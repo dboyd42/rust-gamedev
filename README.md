@@ -6,7 +6,8 @@
   - [Updates](#updates)
   - [Hello, World!](#hello-world)
   - [Cargo Commands](#cargo-commands)
-  - [Creating a New Project with Cargo](#creating-a-new-project-with-cargo)
+    - [Creating a New Project with Cargo](#creating-a-new-project-with-cargo)
+    - [Package Management with Cargo](#package-management-with-cargo)
   - [Getting Started](#getting-started)
   - [Clippy](#clippy)
 - [Syntax](#syntax)
@@ -16,7 +17,7 @@
 
 ### Updates
 
-``` rust 
+``` rust
 // Check for updates
 rustup check
 
@@ -77,6 +78,34 @@ cargo new --vcs=none [prj name]
 cargo run
 ```
 
+## Package Management with Cargo
+
+Crates (pkgs) are available for free on the [crates.io](https://crates.io)
+system.
+
+``` rust
+// 1. Search for crates
+cargo search [search_term]
+
+/* 2. Add it to `Cargo.toml` > `[dependencies]` section:
+ * 2.1 Simple dependency installation  (see: version numbers in Glossary) */
+[dependencies]
+crate_name = "0.8.0"
+// 2.2 Use GitHub version of crate
+crate-name = { git = "https://github.com/user/crate-name"}
+// 2.3 Configure crate-name's FEATURE FLAGS to use `Amethyst` as its back-end
+crate-name = {
+  git = "http://github.com/user/crate-name",
+  default-features = false,
+  features = [ "amethyst_engine_vulkan" ]
+}
+
+/* 3. Remove/delete dependency
+ * 3.1 Delete crate from `Cargo.toml` > `[depenedices]` section
+ * 3.2 Then run the following cargo cmd to delete them from your computer */
+cargo clean
+```
+
 ## Getting Started
 
 ``` rust
@@ -108,6 +137,10 @@ println!("Hello, world!")
 
 ## Glossary
 
+***Amethyst:*** a game engine framework written in Rust.
+  - Provides higher-level abstractions for game development, including graphics rendering using APIs (ie. OpenGL, Vulkan).
+  - *(vs.)* ***OpenGL:*** a graphics *API* that allows developers to interact with graphics HW to render graphics.
+
 ***clippy:*** a bossy little mascot who criticizes all of your code. Ultimately a learning tool and can help you avoid mistakes.
 
 ***cargo:*** Rust's package manager; also manages collections of crates.
@@ -118,8 +151,11 @@ println!("Hello, world!")
   - ***`Cargo.toml` > `name =`:*** *(Metadata)* the name of your program.
   - ***`Cargo.toml` > `version =`:*** *(Metadata)* the version of your project.
   - ***`cargo clippy`:*** provides hints & guidance while coding.
+  - ***Crate <u>Version Numbers:***</u> "[major].[minor].[patch]" (pg. 15)
 
 ***crates:*** Rust's name for packeages; available for free on the [crates.io](https://crates.io) system.
+
+***Feature flags:*** are optional functionality provided by a crate.
 
 ***`./src`:*** a dir containing source code.
   - ***`./src/main.rs`:*** a minimal source code file containing the code required.
