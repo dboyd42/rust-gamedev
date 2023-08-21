@@ -29,7 +29,20 @@
 
 ## Creating a New Project
 
+``` Rust
+// 1. Use Cargo to make a new project named "treehouse":
+cargo new treehouse && cd $_
+
+// 2. Open prj
+vim ./src/main.rs
+```
+
 ## Capturing User Input
+
+| Function | Command        | Library                    |
+|----------|----------------|----------------------------|
+| Input    | `read_line()`  | `std::io:stdin::read_line` |
+| Output   | `println!("")` |                            |
 
 ## Moving Input to a Function
 
